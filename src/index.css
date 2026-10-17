@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* Light theme tokens (default) */
+:root {
+  --c-bg: #F7F5FF; --c-bg2: #EDE9FE; --c-sidebar: #2E1065; --c-card: #FFFFFF; --c-elevated: #EDE9FE;
+  --c-primary: #7C3AED; --c-primary-hover: #6D28D9; --c-accent: #EDE9FE; --c-accent-text: #6D28D9;
+  --c-text: #24163D; --c-muted: #6B6280; --c-border: #E5DDF5;
+  --c-danger: #B91C1C; --c-danger-bg: #FEE2E2; --c-warn: #92400E; --c-warn-bg: #FEF3C7;
+  --c-ok: #166534; --c-ok-bg: #DCFCE7;
+  color-scheme: light;
+}
+/* Dark theme tokens (class "dark" is set on <html> by ThemeContext) */
+:root.dark {
+  --c-bg: #160B2E; --c-bg2: #21113F; --c-sidebar: #120720; --c-card: #2A1850; --c-elevated: #35205F;
+  --c-primary: #8B5CF6; --c-primary-hover: #7C3AED; --c-accent: #C4B5FD; --c-accent-text: #C4B5FD;
+  --c-text: #F5F3FF; --c-muted: #C4B5FD; --c-border: #4C3570;
+  --c-danger: #FCA5A5; --c-danger-bg: #4B1D2B; --c-warn: #FCD34D; --c-warn-bg: #4A3510;
+  --c-ok: #86EFAC; --c-ok-bg: #15382A;
+  color-scheme: dark;
+}
+
+/* Expose tokens as Tailwind colors: bg-card, text-muted, border-line, bg-primary ... */
+@theme inline {
+  --color-bg: var(--c-bg); --color-bg2: var(--c-bg2); --color-sidebar: var(--c-sidebar);
+  --color-card: var(--c-card); --color-elevated: var(--c-elevated);
+  --color-primary: var(--c-primary); --color-primary-hover: var(--c-primary-hover);
+  --color-accent: var(--c-accent); --color-accent-text: var(--c-accent-text);
+  --color-ink: var(--c-text); --color-muted: var(--c-muted); --color-line: var(--c-border);
+  --color-danger: var(--c-danger); --color-danger-bg: var(--c-danger-bg);
+  --color-warn: var(--c-warn); --color-warn-bg: var(--c-warn-bg);
+  --color-ok: var(--c-ok); --color-ok-bg: var(--c-ok-bg);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--c-bg); color: var(--c-text); font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow-x: hidden; }
+
+/* Visible keyboard focus everywhere */
+:focus-visible { outline: 3px solid var(--c-primary); outline-offset: 2px; border-radius: 6px; }
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* Reusable component classes. Tailwind v4: custom classes that other classes can @apply must be declared with @utility. */
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary { @apply btn bg-primary text-white hover:bg-primary-hover; }
+@utility btn-secondary { @apply btn border border-line bg-card text-ink hover:bg-elevated; }
+@utility btn-ghost { @apply btn text-ink hover:bg-elevated; }
+@utility btn-danger { @apply btn border border-danger/40 bg-danger-bg text-danger hover:opacity-90; }
+@utility field {
+  @apply min-h-11 w-full rounded-xl border border-line bg-bg px-3 py-2 text-base text-ink placeholder:text-muted/70 sm:text-sm;
+}
+@utility card { @apply rounded-2xl border border-line bg-card p-4 shadow-sm sm:p-5; }
+@utility label { @apply mb-1 block text-sm font-medium text-ink; }
+@utility err { @apply mt-1 text-sm text-danger; }

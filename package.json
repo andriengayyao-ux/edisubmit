@@ -1,0 +1,32 @@
+{
+  "name": "edisubmit",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "EdiSubmit - Reklamo later. Submit first. Manage requirements, deadlines, and academic tasks.",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:phone": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:utils": "vitest run",
+    "export:policy": "node scripts/export-policy.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "tailwindcss": "^4.1.0",
+    "vite": "^7.0.0",
+    "vitest": "^5.0.5"
+  }
+}
